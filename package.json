@@ -1,6 +1,6 @@
 {
   "name": "joinable",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "test": "mocha -r should --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "test:w": "npm test -- --watch",
@@ -8,6 +8,8 @@
     "prepublish": "npm run test && npm run compile"
   },
   "main": "lib/index.js",
+  "license": "MIT",
+  "author": "Richard Kotze",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.5.1",
