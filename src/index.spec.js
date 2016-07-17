@@ -1,5 +1,7 @@
 import { joinStrings } from './index';
 import { falsyList } from './falsy-list';
+import sinon from 'sinon';
+import 'should-sinon';
 
 describe('Join strings', () => {
   
@@ -17,6 +19,14 @@ describe('Join strings', () => {
 
   it('third param is null and should not be joined in', () => {
     joinStrings('spinach', 'cucumber', null, 'carrot').should.equal('spinach cucumber carrot');
+  });
+
+  it('second param uses logic array to include butternut squash to list', () => {
+    joinStrings('spinach', [(1==1), 'butternut squash'], null, 'carrot').should.equal('spinach butternut squash carrot');
+  });
+
+  it('second param uses logic array and will NOT include butternut squash to list', () => {
+    joinStrings('spinach', [(1==2), 'butternut squash'], null, 'carrot').should.equal('spinach carrot');
   });
 
   describe('falsy checks', () => {

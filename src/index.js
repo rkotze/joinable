@@ -1,7 +1,14 @@
 const slice = Array.prototype.slice;
 export const joinStrings = function(){
   const args = slice.call(arguments);
-  const stringList = args.filter((item) => {
+  const stringList = args
+  .map((item) => {
+    if(isArray(item))
+      return joinIf(item);
+
+    return item;
+  })
+  .filter((item) => {
     return item;
   });
 
@@ -14,3 +21,10 @@ export const joinIf = function(twoValueArray){
 
   return null;
 };
+
+let isArray = Array.isArray;
+if (!isArray) {
+  isArray = function(arg) {
+    return Object.prototype.toString.call(arg) === '[object Array]';
+  };
+}
