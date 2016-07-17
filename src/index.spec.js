@@ -1,20 +1,13 @@
 import { joinStrings } from './index';
 
 describe('Join strings', () => {
-  it('empty first param returns an empty string', () => {
-    joinStrings(undefined).should.equal('');
-  });
-
+  
   it('first param has a string and that value is returned', () => {
     joinStrings('carrot').should.equal('carrot');
   });
 
   it('second param should get appended to the first param with two spaces', () => {
     joinStrings('carrot', 'cucumber').should.equal('carrot cucumber');
-  });
-
-  it('empty second param should return first param only', () => {
-    joinStrings('carrot', undefined).should.equal('carrot');
   });
 
   it('empty first param with second param should return second param only', () => {
@@ -27,5 +20,19 @@ describe('Join strings', () => {
 
   it('third param is null and should not be joined in', () => {
     joinStrings('spinach', 'cucumber', null, 'carrot').should.equal('spinach cucumber carrot');
+  });
+
+  describe('falsy checks', () => {
+    const falsyList = [null, undefined, '', 0, NaN, false];
+
+    falsyList.forEach((falsy) => {
+      it(`first param fasly(${falsy}) returns an empty string`, () => {
+        joinStrings(falsy).should.equal('');
+      });
+
+      it(`second param fasly(${falsy}) returns a cucumber`, () => {
+        joinStrings('cucumber', falsy).should.equal('cucumber');
+      });
+    });
   });
 });
