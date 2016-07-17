@@ -7,3 +7,8 @@ export const joinStrings = function(){
 
   return stringList.join(' ');
 };
+
+export const joinIf = function(twoValueArray){
+  if(twoValueArray[0])
+    return twoValueArray[1];
+};
