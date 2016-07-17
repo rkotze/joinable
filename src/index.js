@@ -9,7 +9,7 @@ export const joinStrings = function(){
 };
 
 export const joinIf = function(twoValueArray){
-  if(twoValueArray[0])
+  if(twoValueArray.length === 2 && twoValueArray[0])
     return twoValueArray[1];
 
   return null;
