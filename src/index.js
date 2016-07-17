@@ -2,12 +2,7 @@ const slice = Array.prototype.slice;
 export const joinStrings = function(){
   const args = slice.call(arguments);
   const stringList = args
-  .map((item) => {
-    if(isArray(item))
-      return joinIf(item);
-
-    return item;
-  })
+  .map(joinIf)
   .filter((item) => {
     return item;
   });
@@ -16,6 +11,9 @@ export const joinStrings = function(){
 };
 
 export const joinIf = function(twoValueArray){
+  if(!isArray(twoValueArray))
+    return twoValueArray;
+
   if(twoValueArray.length === 2 && twoValueArray[0])
     return twoValueArray[1];
 

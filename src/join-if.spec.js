@@ -14,6 +14,10 @@ describe('Join if', () => {
     (joinIf([true, 'cow', 'chicken']) === null).should.true();
   });
 
+  it('if not an array return param', () => {
+    joinIf('potato').should.equal('potato');
+  });
+
   falsyList.forEach((falsy) => {
     it(`first param is a falsy(${falsy}) then return null`, () => {
       (joinIf([falsy, 'chicken']) === null).should.true();
