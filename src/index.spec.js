@@ -10,10 +10,6 @@ describe('Join strings', () => {
     joinStrings('carrot', 'cucumber').should.equal('carrot cucumber');
   });
 
-  it('empty first param with second param should return second param only', () => {
-    joinStrings(undefined, 'cucumber').should.equal('cucumber');
-  });
-
   it('three params with string values', () => {
     joinStrings('spinach', 'cucumber', 'carrot').should.equal('spinach cucumber carrot');
   });
@@ -26,12 +22,16 @@ describe('Join strings', () => {
     const falsyList = [null, undefined, '', 0, NaN, false];
 
     falsyList.forEach((falsy) => {
-      it(`first param fasly(${falsy}) returns an empty string`, () => {
+      it(`first param falsy(${falsy}) returns an empty string`, () => {
         joinStrings(falsy).should.equal('');
       });
 
-      it(`second param fasly(${falsy}) returns a cucumber`, () => {
+      it(`second param falsy(${falsy}) and first param has value returns a cucumber`, () => {
         joinStrings('cucumber', falsy).should.equal('cucumber');
+      });
+
+      it(`first param falsy(${falsy}) and second param has value should return spinach`, () => {
+        joinStrings(falsy, 'spinach').should.equal('spinach');
       });
     });
   });
