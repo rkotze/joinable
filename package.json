@@ -4,20 +4,18 @@
   "scripts": {
     "test": "mocha -r should --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "test:w": "npm test -- --watch",
-    "build": "webpack --progress --colors",
-    "prepublish": "npm run test && npm run build"
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "prepublish": "npm run test && npm run compile"
   },
   "main": "dist/index.js",
   "dependencies": { },
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.7.2",
-    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.5.0",
     "mocha": "^2.4.5",
     "should": "^8.3.0",
     "should-sinon": "0.0.5",
-    "sinon": "^1.17.3",
-    "webpack": "^1.12.14"
+    "sinon": "^1.17.3"
   }
 }

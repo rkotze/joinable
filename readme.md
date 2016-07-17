@@ -3,13 +3,13 @@
 Join strings with built in control flow.
 
 ```JavaScript
-stringJoin('a', 'b', 'c'); // => 'a b c'
+joinStrings('a', 'b', 'c'); // => 'a b c'
 ```
 
 Handle falsy `false, 0, "", undefined, null, NaN, []`
 
 ```JavaScript
-stringJoin('a', undefined, 'b', null); // => 'a b'
+joinStrings('a', undefined, 'b', null); // => 'a b'
 ```
 
 ## Instructions:
