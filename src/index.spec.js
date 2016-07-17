@@ -1,4 +1,5 @@
 import { joinStrings } from './index';
+import { falsyList } from './falsy-list';
 
 describe('Join strings', () => {
   
@@ -19,7 +20,6 @@ describe('Join strings', () => {
   });
 
   describe('falsy checks', () => {
-    const falsyList = [null, undefined, '', 0, NaN, false];
 
     falsyList.forEach((falsy) => {
       it(`first param falsy(${falsy}) returns an empty string`, () => {
