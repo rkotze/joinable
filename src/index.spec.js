@@ -1,4 +1,4 @@
-import { joinStrings } from './index';
+import { joinStrings, joinIf } from './index';
 import { falsyList } from './falsy-list';
 import sinon from 'sinon';
 import 'should-sinon';
@@ -27,6 +27,10 @@ describe('Join strings', () => {
 
   it('second param uses logic array and will NOT include butternut squash to list', () => {
     joinStrings('spinach', [(1==2), 'butternut squash'], null, 'carrot').should.equal('spinach carrot');
+  });
+
+  it('use joinIf function in second param to include butternut squash to list', () => {
+    joinStrings('spinach', joinIf([(1==1), 'butternut squash']), null, 'carrot').should.equal('spinach butternut squash carrot');
   });
 
   describe('falsy checks', () => {

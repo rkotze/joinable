@@ -44,6 +44,12 @@ joinIf([1==2, 'spinach']); // => null
 joinIf('lettuce'); // => 'lettuce'
 ```
 
+Combine both `joinStrings` and `joinIf`.
+
+```JavaScript
+joinStrings('potato', joinIf([1==1, 'spinach'])) # => 'potato spinach'
+```
+
 ## Instructions:
 
 Install: `npm i`
