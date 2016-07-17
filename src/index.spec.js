@@ -23,5 +23,9 @@ describe('Join strings', () => {
 
   it('three params with string values', () => {
     joinStrings('spinach', 'cucumber', 'carrot').should.equal('spinach cucumber carrot');
-  })
+  });
+
+  it('third param is null and should not be joined in', () => {
+    joinStrings('spinach', 'cucumber', null, 'carrot').should.equal('spinach cucumber carrot');
+  });
 });
