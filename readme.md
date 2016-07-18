@@ -1,6 +1,6 @@
 # Joinable
 
-Join strings with built in control flow. Because we always need to join strings with logic. :D
+Join strings with built in control flow. Because we always need to join strings logically. :D
 
 ## Usage
 
