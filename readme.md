@@ -1,6 +1,6 @@
 # Joinable
 
-Join strings with built in control flow.
+Join strings with built in control flow. Because we always need to join strings with logic. :D
 
 ## Usage
 
@@ -12,7 +12,10 @@ Join strings with built in control flow.
 
 ### joinStrings
 
-`joinString([...params])`
+- @params as many `strings` and `joinIf` as you wish
+- @lastParams Object options to pass in separator. _default is space_
+
+`joinString([...params, {separator:' '}])`
 
 ```JavaScript
 joinStrings('potato', 'rice', 'carrot'); // => 'potato rice carrot'
@@ -30,6 +33,12 @@ Pass array with [truthy|falsy] to decide if it should be included.
 joinStrings('potato', [1==1, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
+```
+
+To provide a separator an object with `separator` property can be passed in as **last** parameter.
+
+```JavaScript
+joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
 ```
 
 ### joinIf

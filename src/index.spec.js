@@ -33,6 +33,14 @@ describe('Join strings', () => {
     joinStrings('spinach', joinIf([(1==1), 'butternut squash']), null, 'carrot').should.equal('spinach butternut squash carrot');
   });
 
+  it('join with a comma separator', () => {
+    joinStrings('spinach', 'cucumber', 'carrot', {separator:','}).should.equal('spinach,cucumber,carrot');
+  });
+
+  it('default join with space if no separator property in options', () => {
+    joinStrings('spinach', 'cucumber', 'carrot', {opt:','}).should.equal('spinach cucumber carrot');
+  });
+
   describe('falsy checks', () => {
 
     falsyList.forEach((falsy) => {
