@@ -10,12 +10,15 @@ export const joinStrings = function(){
   return stringList.join(separator);
 };
 
-export const joinIf = function(twoValueArray){
-  if(!isArray(twoValueArray))
-    return twoValueArray;
+export const joinIf = function(threeValueArray){
+  if(!isArray(threeValueArray))
+    return threeValueArray;
 
-  if(twoValueArray.length === 2 && twoValueArray[0])
-    return twoValueArray[1];
+  if(threeValueArray.length >= 2 && threeValueArray.length < 4 && threeValueArray[0]){
+    return threeValueArray[1];
+  }else if(threeValueArray.length === 3){
+    return threeValueArray[2];
+  }
 
   return null;
 };

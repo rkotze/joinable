@@ -10,8 +10,12 @@ describe('Join if', () => {
     (joinIf(['chicken']) === null).should.true();
   });
 
-  it('if array is greater that two items return null', () => {
-    (joinIf([true, 'cow', 'chicken']) === null).should.true();
+  it('if array has three items and first param is falsy it should return chicken', () => {
+    joinIf([false, 'cow', 'chicken']).should.equal('chicken');
+  });
+
+  it('if array is greater that three items return null', () => {
+    (joinIf([true, 'cow', 'chicken', 'lamb']) === null).should.true();
   });
 
   it('if not an array return param', () => {
