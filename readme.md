@@ -82,7 +82,7 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ```JavaScript
 joinIf([1==1, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
-joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach broccoli'
+joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
 joinIf([1==2, 'spinach', 'broccoli']); // => 'broccoli'
 joinIf('lettuce'); // => 'lettuce'
 ```
