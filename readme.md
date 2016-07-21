@@ -1,5 +1,7 @@
 # Joinable
 
+[![Build Status](https://travis-ci.org/rkotze/joinable.svg?branch=master)](https://travis-ci.org/rkotze/joinable)
+
 Join strings with built in control flow. Because we always need to join strings logically. :D
 
 ## Problem
