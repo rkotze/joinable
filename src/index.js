@@ -14,10 +14,9 @@ export const joinIf = function(threeValueArray){
   if(!isArray(threeValueArray))
     return threeValueArray;
 
-  if(threeValueArray.length >= 2 && threeValueArray.length < 4 && threeValueArray[0]){
-    return threeValueArray[1];
-  }else if(threeValueArray.length === 3){
-    return threeValueArray[2];
+  if(threeValueArray.length >= 2){
+    const conditional = threeValueArray[0];
+    return [...threeValueArray.slice(1, 3), null][Number(!conditional)];
   }
 
   return null;

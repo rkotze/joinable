@@ -14,10 +14,6 @@ describe('Join if', () => {
     joinIf([true, 'cow', 'chicken']).should.equal('cow');
   });
 
-  it('if array is greater that three items return null', () => {
-    (joinIf([true, 'cow', 'chicken', 'lamb']) === null).should.true();
-  });
-
   it('if not an array return param', () => {
     joinIf('potato').should.equal('potato');
   });
