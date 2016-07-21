@@ -1,6 +1,6 @@
 {
   "name": "joinable",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Join strings with built in control flow. Because we always need to join strings logically.",
   "scripts": {
     "test": "mocha -r should --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
@@ -8,7 +8,7 @@
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run test && npm run compile"
   },
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/rkotze/joinable"
   },
@@ -20,9 +20,9 @@
     "simple"
   ],
   "main": "lib/index.js",
-  "license":{ 
-    "type" : "MIT",
-    "url" : "https://github.com/rkotze/joinable/blob/master/LICENSE"
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/rkotze/joinable/blob/master/LICENSE"
   },
   "author": "Richard Kotze <richkotze@outlook.com>",
   "dependencies": {},
