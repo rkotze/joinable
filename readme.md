@@ -8,24 +8,43 @@ Join strings with built in control flow. Because we always need to join strings 
 
 Removing the need for _if_ and _else_ code blocks:
 
-Example of typical string concat with if else. General issues: verbose, unnecessary repetitive complexity and mutation:
+Example of typical logic string concat in ReactJS component with if else. General issues: verbose, unnecessary repetitive complexity and mutation:
 
-```JavaScript
-let myString = 'cucumber ';
-if(1==1)
-	myString += 'potato';
-else
-	myString += 'beetroot';
+```jsx
+const MyComponent = ({ children, className, hide }) => {
+	let myClass = 'potato ';
+	if(hide)
+		myClass += 'invisible';
 
-// myString => 'cucumber potato'
+	if(className)
+		myClass += className;
+
+	return (
+			<div className={myClass}>{children}</div>
+		);
+}
+
+render(<MyComponent className="cucumber">Hello world</MyComponent>); // => <div class="potato cucumber">Hello world</div>
+render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); // => <div class="potato invisible cucumber">Hello world</div>
+render(<MyComponent>Hello world</MyComponent>); // => <div class="potato undefined">Hello world</div>
 ```
 
-## Solution
+While this works fine you will probably need to repeat that similar flow for a lot of components and some will have additional complexity round it.
 
-```JavaScript
-const myString = joinStrings('cucumber', [1==1, 'potato', 'beetroot']);
+## Joinable solution
 
-// myString => 'cucumber potato'
+Lets hide that logic away and keep it clean with a one line function `joinStrings`.
+
+```jsx
+const MyComponent = ({ children, className, hide }) => {
+	return (
+			<div className={joinStrings('potato', className, [hide, 'invisible'])}>{children}</div>
+		);
+}
+
+render(<MyComponent className="cucumber">Hello world</MyComponent>); // => <div class="potato cucumber">Hello world</div>
+render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); // => <div class="potato invisible cucumber">Hello world</div>
+render(<MyComponent>Hello world</MyComponent>); // => <div class="potato">Hello world</div>
 ```
 
 ## Usage
