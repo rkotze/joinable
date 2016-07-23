@@ -24,9 +24,12 @@ const MyComponent = ({ children, className, hide }) => {
 		);
 }
 
-render(<MyComponent className="cucumber">Hello world</MyComponent>); // => <div class="potato cucumber">Hello world</div>
-render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); // => <div class="potato invisible cucumber">Hello world</div>
-render(<MyComponent>Hello world</MyComponent>); // => <div class="potato undefined">Hello world</div>
+render(<MyComponent className="cucumber">Hello world</MyComponent>); 
+// => <div class="potato cucumber">Hello world</div>
+render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); 
+// => <div class="potato invisible cucumber">Hello world</div>
+render(<MyComponent>Hello world</MyComponent>); 
+// => <div class="potato undefined">Hello world</div>
 ```
 
 While this works fine you will probably need to repeat that similar flow for a lot of components and some will have additional complexity round it.
@@ -37,14 +40,20 @@ Lets hide that logic away and keep it clean with a one line function `joinString
 
 ```jsx
 const MyComponent = ({ children, className, hide }) => {
+	const myClass = joinStrings('potato', className, [hide, 'invisible']);
 	return (
-			<div className={joinStrings('potato', className, [hide, 'invisible'])}>{children}</div>
+			<div className={myClass}>
+			{children}
+			</div>
 		);
 }
 
-render(<MyComponent className="cucumber">Hello world</MyComponent>); // => <div class="potato cucumber">Hello world</div>
-render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); // => <div class="potato invisible cucumber">Hello world</div>
-render(<MyComponent>Hello world</MyComponent>); // => <div class="potato">Hello world</div>
+render(<MyComponent className="cucumber">Hello world</MyComponent>); 
+// => <div class="potato cucumber">Hello world</div>
+render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); 
+// => <div class="potato invisible cucumber">Hello world</div>
+render(<MyComponent>Hello world</MyComponent>); 
+// => <div class="potato">Hello world</div>
 ```
 
 ## Usage
