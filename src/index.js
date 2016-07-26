@@ -1,11 +1,13 @@
 const slice = Array.prototype.slice;
 export const joinStrings = function(){
+  let stringList = [];
   const { args, separator } = setup(arguments);
-  const stringList = args
-  .map(joinIf)
-  .filter((item) => {
-    return item && !isObject(item);
-  });
+
+  for (let i = 0; i < args.length; i++) {
+    const item = joinIf(args[i]);
+    if(item && !isObject(item))
+      stringList.push(item);
+  }
 
   return stringList.join(separator);
 };
@@ -45,7 +47,7 @@ const setup = function(args) {
     return setupModal(options.separator, slice.call(args, 0, -1));
   }
 
-  return setupModal(DEFAULT_SEPARATOR, slice.call(args));
+  return setupModal(DEFAULT_SEPARATOR, args);
 };
 
 const setupModal = function(separator, args){
