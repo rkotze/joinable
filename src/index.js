@@ -3,7 +3,7 @@ export const joinStrings = function(){
 
   for (let i = 0; i < arguments.length; i++) {
     const item = arguments[i];
-    if(item && (typeof item === 'string' || typeof item === 'number')){
+    if(isJoinable(item)){
       stringList.push(item);
     }else{
       const value = joinIf(item);
@@ -46,6 +46,10 @@ const isObject = function(arg){
 
 const hasSeparator = function(options) {
   return isObject(options) && options.hasOwnProperty('separator');
+};
+
+const isJoinable = function(item){
+  return item && (typeof item === 'string' || typeof item === 'number');
 };
 
 const DEFAULT_SEPARATOR = ' ';
