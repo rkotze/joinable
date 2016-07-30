@@ -19,7 +19,9 @@
     "concat",
     "conditional",
     "join",
-    "simple"
+    "react",
+    "className",
+    "css"
   ],
   "main": "lib/index.js",
   "license": {

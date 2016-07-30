@@ -66,10 +66,12 @@ render(<MyComponent>Hello world</MyComponent>);
 
 ### joinStrings
 
-- @params as many `strings` and `joinIf` as you wish
+- @params as many `strings`, `numbers` and `ifArray` as you wish
 - @lastParams Object options to pass in separator. _default is space_
 
 `joinString([...params, {separator:' '}])`
+
+### Examples
 
 ```JavaScript
 joinStrings('potato', 'rice', 'carrot'); // => 'potato rice carrot'
@@ -87,7 +89,7 @@ Handle falsy `false, 0, "", undefined, null, NaN`
 joinStrings('carrot', undefined, 'rice', null); // => 'carrot rice'
 ```
 
-### If
+### If array
 
 ```JavaScript
 joinStrings('potato', [1==1, 'spinach']); // => 'potato spinach'
@@ -95,7 +97,7 @@ joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
 
-### If else
+### If else array
 
 ```JavaScript
 joinStrings('potato', [1==1, 'spinach', 'beetroot']); // => 'potato spinach'
@@ -127,4 +129,6 @@ joinStrings('potato', joinIf([1==1, 'spinach'])) # => 'potato spinach'
 
 Install: `npm i`
 
-`npm test`
+`npm test` - unit tests and eslint
+
+`npm run benchmark` - run performance tests
