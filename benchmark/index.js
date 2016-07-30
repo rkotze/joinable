@@ -16,6 +16,9 @@ suite.add('joinable', function() {
 .add('joinable with if else cond and new separator', function() {
   joinable.joinStrings('a', null, [false, 'b', 'c'], { separator: ',' });
 })
+.add('joinIf', function() {
+  joinable.joinIf([false, 'b', 'c']);
+})
 // add listeners
 .on('cycle', function(event) {
   console.log(String(event.target));

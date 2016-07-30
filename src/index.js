@@ -21,13 +21,15 @@ export const joinStrings = function(){
   return stringList.join(DEFAULT_SEPARATOR);
 };
 
-export const joinIf = function(threeValueArray){
-  if(!isArray(threeValueArray))
+export const joinIf = function(ifArray){
+  if(!isArray(ifArray)){
     return null;
+  }
 
-  if(threeValueArray.length >= 2){
-    const conditional = threeValueArray[0];
-    return [...threeValueArray.slice(1, 3), null][Number(!conditional)];
+  if(ifArray.length === 2){
+    return ifArray[0] ? ifArray[1] : null;
+  }else if(ifArray.length === 3){
+    return ifArray[0] ? ifArray[1] : ifArray[2];
   }
 
   return null;
