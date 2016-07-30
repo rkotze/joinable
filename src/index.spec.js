@@ -1,7 +1,5 @@
 import { joinStrings, joinIf } from './index';
 import { falsyList } from './falsy-list';
-import sinon from 'sinon';
-import 'should-sinon';
 
 describe('Join strings', () => {
   

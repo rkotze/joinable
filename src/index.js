@@ -7,7 +7,7 @@ export const joinStrings = function(){
 
     if(isJoinable(item)) {
       stringList.push(item);
-    }else {
+    } else {
       const value = joinIf(item);
       if(value){
         stringList.push(value);
@@ -44,7 +44,7 @@ if (!isArray) {
   };
 }
 
-const isObject = function(arg){
+const isObject = function(arg) {
   return Object.prototype.toString.call(arg) === '[object Object]';
 };
 
@@ -52,7 +52,7 @@ const hasSeparator = function(options) {
   return isObject(options) && options.hasOwnProperty('separator');
 };
 
-const isJoinable = function(item){
+const isJoinable = function(item) {
   return typeof item === 'string' || typeof item === 'number';
 };
 
