@@ -6,16 +6,16 @@ describe('Join if', () => {
     joinIf([true, 'beetroot']).should.equal('beetroot');
   });
 
-  it('if array is less that two items return null', () => {
+  it('array is less that two items return null', () => {
     (joinIf(['chicken']) === null).should.true();
   });
 
-  it('if array has three items and first param is truthy it should return cow', () => {
-    joinIf([true, 'cow', 'chicken']).should.equal('cow');
+  it('not an array return null', () => {
+    (joinIf('potato') === null).should.true();
   });
 
-  it('if not an array return param', () => {
-    joinIf('potato').should.equal('potato');
+  it('array has three items and first param is truthy it should return cow', () => {
+    joinIf([true, 'cow', 'chicken']).should.equal('cow');
   });
 
   falsyList.forEach((falsy) => {

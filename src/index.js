@@ -2,9 +2,15 @@ export const joinStrings = function(){
   let stringList = [];
 
   for (let i = 0; i < arguments.length; i++) {
-    const item = joinIf(arguments[i]);
-    if(item && !isObject(item))
+    const item = arguments[i];
+    if(item && (typeof item === 'string' || typeof item === 'number')){
       stringList.push(item);
+    }else{
+      const value = joinIf(item);
+      if(value){
+        stringList.push(value);
+      }
+    }
   }
 
   let options = arguments[arguments.length-1];
@@ -17,7 +23,7 @@ export const joinStrings = function(){
 
 export const joinIf = function(threeValueArray){
   if(!isArray(threeValueArray))
-    return threeValueArray;
+    return null;
 
   if(threeValueArray.length >= 2){
     const conditional = threeValueArray[0];

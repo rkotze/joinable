@@ -4,7 +4,7 @@
   "description": "Join strings with built in control flow. Because we always need to join strings logically.",
   "scripts": {
     "test": "mocha -r should --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
-    "test:w": "npm test -- --watch",
+    "test:w": "mocha -r should -w --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "benchmark": "npm run compile && node ./benchmark/index.js",
     "compile": "babel -d lib/ src/ --ignore *spec.js,falsy-list.js",
     "prepublish": "npm run test && npm run compile"

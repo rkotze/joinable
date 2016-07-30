@@ -13,6 +13,10 @@ describe('Join strings', () => {
     joinStrings('carrot', 'cucumber').should.equal('carrot cucumber');
   });
 
+  it('joining a string and a number', () => {
+    joinStrings('carrot', 4).should.equal('carrot 4');
+  });
+
   it('three params with string values', () => {
     joinStrings('spinach', 'cucumber', 'carrot').should.equal('spinach cucumber carrot');
   });
