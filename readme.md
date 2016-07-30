@@ -114,7 +114,7 @@ joinIf([1==1, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
 joinIf([1==2, 'spinach', 'broccoli']); // => 'broccoli'
-joinIf('lettuce'); // => 'lettuce'
+joinIf('lettuce'); // => null
 ```
 
 Combine both `joinStrings` and `joinIf`.

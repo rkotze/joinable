@@ -3,9 +3,9 @@ export const joinStrings = function(){
 
   for (let i = 0; i < arguments.length; i++) {
     const item = arguments[i];
-    if(isJoinable(item)){
+    if(isJoinable(item)) {
       stringList.push(item);
-    }else{
+    }else {
       const value = joinIf(item);
       if(value){
         stringList.push(value);
