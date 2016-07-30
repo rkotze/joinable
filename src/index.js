@@ -1,15 +1,18 @@
-const slice = Array.prototype.slice;
 export const joinStrings = function(){
   let stringList = [];
-  const { args, separator } = setup(arguments);
 
-  for (let i = 0; i < args.length; i++) {
-    const item = joinIf(args[i]);
+  for (let i = 0; i < arguments.length; i++) {
+    const item = joinIf(arguments[i]);
     if(item && !isObject(item))
       stringList.push(item);
   }
 
-  return stringList.join(separator);
+  let options = arguments[arguments.length-1];
+  if(hasSeparator(options)){
+    return stringList.join(options.separator);
+  }
+
+  return stringList.join(DEFAULT_SEPARATOR);
 };
 
 export const joinIf = function(threeValueArray){
@@ -40,19 +43,3 @@ const hasSeparator = function(options) {
 };
 
 const DEFAULT_SEPARATOR = ' ';
-
-const setup = function(args) {
-  const options = args[args.length-1];
-  if(hasSeparator(options)){
-    return setupModal(options.separator, slice.call(args, 0, -1));
-  }
-
-  return setupModal(DEFAULT_SEPARATOR, args);
-};
-
-const setupModal = function(separator, args){
-  return {
-    separator,
-    args
-  };
-};
