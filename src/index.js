@@ -3,6 +3,8 @@ export const joinStrings = function(){
 
   for (let i = 0; i < arguments.length; i++) {
     const item = arguments[i];
+    if(!item) continue;
+
     if(isJoinable(item)) {
       stringList.push(item);
     }else {
@@ -51,7 +53,7 @@ const hasSeparator = function(options) {
 };
 
 const isJoinable = function(item){
-  return item && (typeof item === 'string' || typeof item === 'number');
+  return typeof item === 'string' || typeof item === 'number';
 };
 
 const DEFAULT_SEPARATOR = ' ';
