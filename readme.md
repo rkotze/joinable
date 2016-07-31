@@ -4,57 +4,11 @@
 
 Join strings with built in control flow. Because we always need to join strings logically. :D
 
-## Problem
+More information about [Joinable](http://www.richardkotze.com/projects/joinable){:target="_blank"}
 
-Removing the need for _if_ and _else_ code blocks:
+Performance tested using benchmark. `npm run benchmark`
 
-Example of typical logic string concat in ReactJS component with if else. General issues: verbose, unnecessary repetitive complexity and mutation:
-
-```jsx
-const MyComponent = ({ children, className, hide }) => {
-	let myClass = 'potato ';
-	if(hide)
-		myClass += 'invisible';
-
-	if(className)
-		myClass += className;
-
-	return (
-			<div className={myClass}>{children}</div>
-		);
-}
-
-render(<MyComponent className="cucumber">Hello world</MyComponent>); 
-// => <div class="potato cucumber">Hello world</div>
-render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); 
-// => <div class="potato invisible cucumber">Hello world</div>
-render(<MyComponent>Hello world</MyComponent>); 
-// => <div class="potato undefined">Hello world</div>
-```
-
-While this works fine you will probably need to repeat that similar flow for a lot of components and some will have additional complexity round it.
-
-## Joinable solution
-
-Lets hide that logic away and keep it clean with a one line function `joinStrings`.
-
-```jsx
-const MyComponent = ({ children, className, hide }) => {
-	const myClass = joinStrings('potato', className, [hide, 'invisible']);
-	return (
-			<div className={myClass}>
-			{children}
-			</div>
-		);
-}
-
-render(<MyComponent className="cucumber">Hello world</MyComponent>); 
-// => <div class="potato cucumber">Hello world</div>
-render(<MyComponent className="cucumber" hide>Hello world</MyComponent>); 
-// => <div class="potato invisible cucumber">Hello world</div>
-render(<MyComponent>Hello world</MyComponent>); 
-// => <div class="potato">Hello world</div>
-```
+Follow [Semantic Versioning](http://semver.org/){:target="_blank"}
 
 ## Usage
 
@@ -74,7 +28,7 @@ render(<MyComponent>Hello world</MyComponent>);
 ### Examples
 
 ```JavaScript
-joinStrings('potato', 'rice', 'carrot'); // => 'potato rice carrot'
+joinStrings('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
 ```
 
 To provide a separator an object with `separator` property can be passed in as **last** parameter.
@@ -92,7 +46,8 @@ joinStrings('carrot', undefined, 'rice', null); // => 'carrot rice'
 ### If array
 
 ```JavaScript
-joinStrings('potato', [1==1, 'spinach']); // => 'potato spinach'
+const condition = variableA === variableB; // let's assume it's true
+joinStrings('potato', [condition, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
@@ -100,7 +55,8 @@ joinStrings('potato', [null, 'spinach']); // => 'potato'
 ### If else array
 
 ```JavaScript
-joinStrings('potato', [1==1, 'spinach', 'beetroot']); // => 'potato spinach'
+const condition = variableA === variableB; // let's assume it's true
+joinStrings('potato', [condition, 'spinach', 'beetroot']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
 joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ```
@@ -112,7 +68,8 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 `joinIf([truthy|falsy, string])`
 
 ```JavaScript
-joinIf([1==1, 'spinach']); // => 'spinach'
+const condition = variableA === variableB; // let's assume it's true
+joinIf([condition, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
 joinIf([1==2, 'spinach', 'broccoli']); // => 'broccoli'
@@ -122,7 +79,8 @@ joinIf('lettuce'); // => null
 Combine both `joinStrings` and `joinIf`.
 
 ```JavaScript
-joinStrings('potato', joinIf([1==1, 'spinach'])) # => 'potato spinach'
+const condition = variableA === variableB; // let's assume it's true
+joinStrings('potato', joinIf([condition, 'spinach'])) # => 'potato spinach'
 ```
 
 ## Instructions:
