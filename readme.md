@@ -4,11 +4,11 @@
 
 Join strings with built in control flow. Because we always need to join strings logically. :D
 
-More information about [Joinable](http://www.richardkotze.com/projects/joinable){:target="_blank"}
+More information about [Joinable](http://www.richardkotze.com/projects/joinable)
 
 Performance tested using benchmark. `npm run benchmark`
 
-Follow [Semantic Versioning](http://semver.org/){:target="_blank"}
+Follow [Semantic Versioning](http://semver.org/)
 
 ## Usage
 
