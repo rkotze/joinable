@@ -16,6 +16,9 @@ suite.add('joinStrings', function() {
 .add('joinStrings with if else cond and new separator', function() {
   joinable.joinStrings('a', null, [false, 'b', 'c'], { separator: ',' });
 })
+.add('joinStrings using regex', function() {
+  joinable.joinStrings('a', 'b', 'c', { regex: /a/ });
+})
 .add('joinStrings using joinIf explicit', function() {
   joinable.joinStrings('a', joinable.joinIf([false, 'b', 'c']));
 })

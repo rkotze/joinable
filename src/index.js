@@ -1,11 +1,16 @@
 export const joinStrings = function(){
   let stringList = [];
+  let options = arguments[arguments.length-1];
+  const hasRegexOption = hasRegex(options);
 
   for (let i = 0; i < arguments.length; i++) {
     const item = arguments[i];
     if(!item) continue;
 
     if(isJoinable(item)) {
+      if(hasRegexOption && !options.regex.test(item)){
+        continue;
+      }
       stringList.push(item);
     } else {
       const value = joinIf(item);
@@ -15,7 +20,6 @@ export const joinStrings = function(){
     }
   }
 
-  let options = arguments[arguments.length-1];
   if(hasSeparator(options)){
     return stringList.join(options.separator);
   }
@@ -50,6 +54,10 @@ const isObject = function(arg) {
 
 const hasSeparator = function(options) {
   return isObject(options) && options.hasOwnProperty('separator');
+};
+
+const hasRegex = function(options) {
+  return isObject(options) && options.hasOwnProperty('regex');
 };
 
 const isJoinable = function(item) {

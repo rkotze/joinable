@@ -1,8 +1,9 @@
 import { joinStrings, joinIf } from './index';
 import { falsyList } from './falsy-list';
+import { regexTestCases } from './regex-test-cases';
 
 describe('Join strings', () => {
-  
+
   it('first param has a string and that value is returned', () => {
     joinStrings('carrot').should.equal('carrot');
   });
@@ -41,6 +42,18 @@ describe('Join strings', () => {
 
   it('default join with space if no separator property in options', () => {
     joinStrings('spinach', 'cucumber', 'carrot', {opt:','}).should.equal('spinach cucumber carrot');
+  });
+
+  describe('regex checks', () => {
+    regexTestCases.forEach(({stringsToJoin, regex, joinedString}) => {
+      it(`joins the strings in [${stringsToJoin}] that match the regular expression ${regex}`, () => {
+        joinStrings(...stringsToJoin, {regex: regex}).should.equal(joinedString);
+      });
+    });
+
+    it('joins the strings in [mickey, minnie, donald] that match the regular expression /m*/ with a comma separator', () => {
+      joinStrings('mickey', 'minnie', 'donald', {regex:/m+/, separator:','}).should.equal('mickey,minnie');
+    });
   });
 
   describe('falsy checks', () => {

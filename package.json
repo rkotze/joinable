@@ -7,7 +7,7 @@
     "test:w": "npm run js-style && mocha -r should -w --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "js-style": "eslint ./src/",
     "benchmark": "npm run compile && node ./benchmark/index.js",
-    "compile": "babel -d lib/ src/ --ignore *spec.js,falsy-list.js",
+    "compile": "babel -d lib/ src/ --ignore *spec.js,falsy-list.js,regex-test-cases.js",
     "prepublish": "npm run test && npm run compile"
   },
   "repository": {
