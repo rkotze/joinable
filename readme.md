@@ -14,7 +14,7 @@ Follow [Semantic Versioning](http://semver.org/)
 
 `npm install joinable`
 
-`import { joinStrings, joinIf } from 'joinable'`
+`import joinable, { joinStrings, joinIf } from 'joinable'`
 
 ## API
 
@@ -24,6 +24,8 @@ Follow [Semantic Versioning](http://semver.org/)
 - @lastParams Object options to pass in separator. _default is space_
 
 `joinString([...params, {separator:' '}])`
+
+`joinable` is the default export is an alias of `joinStrings`.
 
 ### Examples
 
