@@ -1,12 +1,7 @@
 const joinStrings = function(){
   let stringList = joinable.apply(null, arguments);
 
-  const options = arguments[arguments.length-1];
-  if(hasSeparator(options)){
-    return stringList.join(options.separator);
-  }
-
-  return stringList.join(DEFAULT_SEPARATOR);
+  return join(stringList, arguments[arguments.length-1]);
 };
 
 const prefixStrings = function(){
@@ -16,7 +11,7 @@ const prefixStrings = function(){
   for (let i = 1; i < stringList.length; i++) {
     prefixList.push(prefix + stringList[i]);
   }
-  return prefixList.join(DEFAULT_SEPARATOR);
+  return join(prefixList, arguments[arguments.length-1]);
 };
 
 const joinable = function(){
@@ -37,6 +32,14 @@ const joinable = function(){
   }
 
   return stringList;
+};
+
+const join = function(list, options) {
+  if(hasSeparator(options)){
+    return list.join(options.separator);
+  }
+
+  return list.join(DEFAULT_SEPARATOR);
 };
 
 const joinIf = function(ifArray){
