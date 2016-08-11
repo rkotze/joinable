@@ -1,4 +1,25 @@
-export const joinStrings = function(){
+const joinStrings = function(){
+  let stringList = joinable.apply(null, arguments);
+
+  const options = arguments[arguments.length-1];
+  if(hasSeparator(options)){
+    return stringList.join(options.separator);
+  }
+
+  return stringList.join(DEFAULT_SEPARATOR);
+};
+
+const prefixStrings = function(){
+  const stringList = joinable.apply(null, arguments),
+  prefix = stringList[0],
+  prefixList = [];
+  for (let i = 1; i < stringList.length; i++) {
+    prefixList.push(prefix + stringList[i]);
+  }
+  return prefixList.join(DEFAULT_SEPARATOR);
+};
+
+const joinable = function(){
   let stringList = [];
 
   for (let i = 0; i < arguments.length; i++) {
@@ -15,15 +36,10 @@ export const joinStrings = function(){
     }
   }
 
-  let options = arguments[arguments.length-1];
-  if(hasSeparator(options)){
-    return stringList.join(options.separator);
-  }
-
-  return stringList.join(DEFAULT_SEPARATOR);
+  return stringList;
 };
 
-export const joinIf = function(ifArray){
+const joinIf = function(ifArray){
   if(!isArray(ifArray)){
     return null;
   }
@@ -57,3 +73,10 @@ const isJoinable = function(item) {
 };
 
 const DEFAULT_SEPARATOR = ' ';
+
+export {
+  joinStrings as default,
+  joinStrings,
+  joinIf,
+  prefixStrings
+};

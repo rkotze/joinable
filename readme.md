@@ -20,33 +20,29 @@ Follow [Semantic Versioning](http://semver.org/)
 
 ### joinStrings
 
-- @params as many `strings`, `numbers` and `ifArray` as you wish
+- @params as many `strings`, `numbers` and `ifArray()` as you wish
 - @lastParams Object options to pass in separator. _default is space_
 
 `joinString([...params, {separator:' '}])`
 
 ### Examples
 
+Handle falsy `false, 0, "", undefined, null, NaN`
+
 ```JavaScript
 joinStrings('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
 ```
 
-To provide a separator an object with `separator` property can be passed in as **last** parameter.
+Change **separator** an object with `separator` property can be passed in as **last** parameter.
 
 ```JavaScript
 joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
 ```
 
-Handle falsy `false, 0, "", undefined, null, NaN`
-
-```JavaScript
-joinStrings('carrot', undefined, 'rice', null); // => 'carrot rice'
-```
-
 ### If array
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinStrings('potato', [condition, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
@@ -55,7 +51,7 @@ joinStrings('potato', [null, 'spinach']); // => 'potato'
 ### If else array
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinStrings('potato', [condition, 'spinach', 'beetroot']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
 joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
@@ -68,7 +64,7 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 `joinIf([truthy|falsy, string])`
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinIf([condition, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
@@ -79,7 +75,7 @@ joinIf('lettuce'); // => null
 Combine both `joinStrings` and `joinIf`.
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinStrings('potato', joinIf([condition, 'spinach'])) # => 'potato spinach'
 ```
 
