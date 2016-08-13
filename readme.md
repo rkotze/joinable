@@ -20,12 +20,15 @@ Follow [Semantic Versioning](http://semver.org/)
 
 ### joinStrings
 
-- @params as many `strings`, `numbers` and `ifArray()` as you wish
-- @lastParams Object options to pass in separator. _default is space_
+```
+@param	{string|number}	joinables 	as many `strings`, `numbers` and `ifArray()`
+@param	{Object}				options 		{ separator: ' ' }. _default is space_
+@return {string}
+```
 
-`joinString([...params, {separator:' '}])`
+`joinStrings(...joinables, options)`
 
-`joinable` is the default export is an alias of `joinStrings`.
+`joinable` is the default export and an alias of `joinStrings`.
 
 ### Examples
 
@@ -39,6 +42,22 @@ Change **separator** an object with `separator` property can be passed in as **l
 
 ```JavaScript
 joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
+```
+
+### prefixStrings
+
+```
+@param 	{string} 				prefix 			value to prefix onto joinables
+@param	{string|number}	joinables 	as many `strings`, `numbers` and `ifArray()`
+@param	{Object}				options 		{ separator: ' ' }. _default is space_
+@return {string}
+```
+
+`prefixStrings(prefix, ...joinables, options)`
+
+```JavaScript
+prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
+prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
 ```
 
 ### If array
@@ -61,9 +80,12 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 
 ### joinIf
 
-@param1 array required
+```
+@param 	{array}	ifArray	three value array with first being the condition
+@return {string|null}
+```
 
-`joinIf([truthy|falsy, string])`
+`joinIf(ifArray)`
 
 ```JavaScript
 const condition = variableA === variableB; // assigns true
