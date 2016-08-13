@@ -47,9 +47,9 @@ joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,ca
 ### prefixStrings
 
 ```
-@param 	{string} 				prefix 			value to prefix onto joinables
-@param	{string|number}	joinables 	as many `strings`, `numbers` and `ifArray()`
-@param	{Object}				options 		{ separator: ' ' }. _default is space_
+@param  {string}         prefix     value to prefix onto joinables
+@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
+@param  {Object}         options    { separator: ' ' }. _default is space_
 @return {string}
 ```
 
@@ -81,8 +81,8 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ### joinIf
 
 ```
-@param 	{array}	ifArray	three value array with first being the condition
-@return {string|null}
+@param   {array}  ifArray  three value array with first being the condition
+@return  {string|null}
 ```
 
 `joinIf(ifArray)`
