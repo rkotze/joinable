@@ -9,4 +9,8 @@ describe('Prefix strings', () => {
 		prefixStrings('jam-', 'spinach', 'cucumber', 'carrot', {separator:','}).should.equal('jam-spinach,jam-cucumber,jam-carrot');
 	});
 
+  it('when falsy prefix is set return joined string', () => {
+    prefixStrings(null, 'spinach', 'cucumber', 'carrot').should.equal('spinach cucumber carrot');
+  });
+
 });

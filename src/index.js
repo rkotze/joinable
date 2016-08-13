@@ -6,11 +6,17 @@ const joinStrings = function(){
 
 const prefixStrings = function(){
   const stringList = joinable.apply(null, arguments),
-  prefix = stringList[0],
-  prefixList = [];
+  prefix = arguments[0];
+
+  if(!prefix)
+    return join(stringList, arguments[arguments.length-1]);
+
+  const prefixList = [];
+  
   for (let i = 1; i < stringList.length; i++) {
     prefixList.push(prefix + stringList[i]);
   }
+
   return join(prefixList, arguments[arguments.length-1]);
 };
 
