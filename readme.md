@@ -21,12 +21,12 @@ Follow [Semantic Versioning](http://semver.org/)
 ### joinStrings
 
 ```
-@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
-@param  {Object}         options    { separator: ' ' }. _default is space_
+@param  {string|number}  joinables  As many `strings`, `numbers` and `ifArray()`
+@param  {Object}         options    { separator: ' ' }. default is space
 @return {string}
 ```
 
-`joinStrings(...joinables, options)`
+`joinStrings(...joinables [, options])`
 
 `joinable` is the default export and an alias of `joinStrings`.
 
@@ -49,15 +49,16 @@ joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,ca
 ```
 @param  {string}         prefix     value to prefix onto joinables
 @param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
-@param  {Object}         options    { separator: ' ' }. _default is space_
+@param  {Object}         options    { separator: ' ' }. default is space
 @return {string}
 ```
 
-`prefixStrings(prefix, ...joinables, options)`
+`prefixStrings(prefix, ...joinables [, options])`
 
 ```JavaScript
 prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
 prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
+prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // => 'pre-rice,pre-carrot'
 ```
 
 ### If array
