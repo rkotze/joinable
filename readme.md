@@ -21,8 +21,8 @@ Follow [Semantic Versioning](http://semver.org/)
 ### joinStrings
 
 ```
-@param	{string|number}	joinables 	as many `strings`, `numbers` and `ifArray()`
-@param	{Object}				options 		{ separator: ' ' }. _default is space_
+@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
+@param  {Object}         options    { separator: ' ' }. _default is space_
 @return {string}
 ```
 
