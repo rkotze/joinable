@@ -8,7 +8,7 @@ Join strings with built in control flow. Because we always need to join strings 
 
 **Why use it:** Keep your code base clean by removing the if else statements and improve the readability.
 
-More information about [Joinable](http://www.richardkotze.com/projects/joinable)
+**More information** about [Joinable](http://www.richardkotze.com/projects/joinable)
 
 Performance tested using benchmark. `npm run benchmark`
 
