@@ -4,6 +4,10 @@
 
 Join strings with built in control flow. Because we always need to join strings logically. :D
 
+**What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
+
+**Why use it:** Keep your code base clean by removing the if else statements and improve the readability.
+
 More information about [Joinable](http://www.richardkotze.com/projects/joinable)
 
 Performance tested using benchmark. `npm run benchmark`
