@@ -18,7 +18,7 @@ Follow [Semantic Versioning](http://semver.org/)
 
 `npm install joinable`
 
-`import joinable, { joinStrings, joinIf } from 'joinable'`
+`import joinable, { joinStrings, prefixStrings, joinIf } from 'joinable'`
 
 ## API
 
