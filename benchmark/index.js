@@ -25,6 +25,9 @@ suite.add('joinStrings', function() {
 .add('joinIf only', function() {
   joinable.joinIf([false, 'b', 'c']);
 })
+.add('prefixStrings with if cond', function() {
+  joinable.prefixStrings('pre-','a', null, 'b', undefined);
+})
 // add listeners
 .on('cycle', function(event) {
   console.log(String(event.target));

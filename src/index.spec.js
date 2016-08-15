@@ -1,4 +1,4 @@
-import { joinStrings, joinIf } from './index';
+import joinable, { joinStrings, joinIf } from './index';
 import { falsyList } from './falsy-list';
 import { regexTestCases } from './regex-test-cases';
 
@@ -18,6 +18,10 @@ describe('Join strings', () => {
 
   it('three params with string values', () => {
     joinStrings('spinach', 'cucumber', 'carrot').should.equal('spinach cucumber carrot');
+  });
+
+  it('default function is joinStrings as joinable', () => {
+    joinable('spinach', 'cucumber', null, 'carrot').should.equal('spinach cucumber carrot');
   });
 
   it('third param is null and should not be joined in', () => {

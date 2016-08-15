@@ -4,7 +4,11 @@
 
 Join strings with built in control flow. Because we always need to join strings logically. :D
 
-More information about [Joinable](http://www.richardkotze.com/projects/joinable)
+**What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
+
+**Why use it:** Keep your code base clean by removing the if else statements and improve the readability.
+
+**More information** about [Joinable](http://www.richardkotze.com/projects/joinable)
 
 Performance tested using benchmark. `npm run benchmark`
 
@@ -14,24 +18,31 @@ Follow [Semantic Versioning](http://semver.org/)
 
 `npm install joinable`
 
-`import { joinStrings, joinIf } from 'joinable'`
+`import joinable, { joinStrings, prefixStrings, joinIf } from 'joinable'`
 
 ## API
 
 ### joinStrings
 
-- @params as many `strings`, `numbers` and `ifArray` as you wish
-- @lastParams Object options to pass in separator. _default is space_
+```
+@param  {string|number}  joinables  As many `strings`, `numbers` and `ifArray()`
+@param  {Object}         options    { separator: ' ' }. default is space
+@return {string}
+```
 
-`joinString([...params, {separator:' '}])`
+`joinStrings(...joinables [, options])`
+
+`joinable` is the default export and an alias of `joinStrings`.
 
 ### Examples
+
+Handle falsy `false, 0, "", undefined, null, NaN`
 
 ```JavaScript
 joinStrings('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
 ```
 
-To provide a separator an object with `separator` property can be passed in as **last** parameter.
+Change **separator** an object with `separator` property can be passed in as **last** parameter.
 
 ```JavaScript
 joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
@@ -43,16 +54,27 @@ To join based on a regular expression an object with `regex` property can be pas
 joinStrings('potato', 'rice', 'carrot', {regex: /^.*t+.*$/}); // => 'potato carrot'
 ```
 
-Handle falsy `false, 0, "", undefined, null, NaN`
+### prefixStrings
+
+```
+@param  {string}         prefix     value to prefix onto joinables
+@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
+@param  {Object}         options    { separator: ' ' }. default is space
+@return {string}
+```
+
+`prefixStrings(prefix, ...joinables [, options])`
 
 ```JavaScript
-joinStrings('carrot', undefined, 'rice', null); // => 'carrot rice'
+prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
+prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
+prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // => 'pre-rice,pre-carrot'
 ```
 
 ### If array
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinStrings('potato', [condition, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
@@ -61,7 +83,7 @@ joinStrings('potato', [null, 'spinach']); // => 'potato'
 ### If else array
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinStrings('potato', [condition, 'spinach', 'beetroot']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
 joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
@@ -69,12 +91,15 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 
 ### joinIf
 
-@param1 array required
+```
+@param   {array}  ifArray  three value array with first being the condition
+@return  {string|null}
+```
 
-`joinIf([truthy|falsy, string])`
+`joinIf(ifArray)`
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinIf([condition, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
@@ -85,7 +110,7 @@ joinIf('lettuce'); // => null
 Combine both `joinStrings` and `joinIf`.
 
 ```JavaScript
-const condition = variableA === variableB; // let's assume it's true
+const condition = variableA === variableB; // assigns true
 joinStrings('potato', joinIf([condition, 'spinach'])) # => 'potato spinach'
 ```
 
