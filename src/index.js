@@ -71,7 +71,7 @@ if (!isArray) {
 }
 
 const isSeparator = function(options) {
-  return options && options.separator;
+  return options && (options.separator === '' || options.separator);
 };
 
 const isJoinable = function(item) {
