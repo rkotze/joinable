@@ -68,8 +68,8 @@ prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // =
 ### If array
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinStrings('potato', [condition, 'spinach']); // => 'potato spinach'
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', [predicate, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
@@ -77,8 +77,8 @@ joinStrings('potato', [null, 'spinach']); // => 'potato'
 ### If else array
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinStrings('potato', [condition, 'spinach', 'beetroot']); // => 'potato spinach'
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', [predicate, 'spinach', 'beetroot']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
 joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ```
@@ -86,15 +86,15 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ### joinIf
 
 ```
-@param   {array}  ifArray  three value array with first being the condition
+@param   {array}  ifArray  three value array with first being the predicate
 @return  {string|null}
 ```
 
 `joinIf(ifArray)`
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinIf([condition, 'spinach']); // => 'spinach'
+const predicate = variableA === variableB; // assigns true
+joinIf([predicate, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
 joinIf([1==2, 'spinach', 'broccoli']); // => 'broccoli'
@@ -104,8 +104,8 @@ joinIf('lettuce'); // => null
 Combine both `joinStrings` and `joinIf`.
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinStrings('potato', joinIf([condition, 'spinach'])) # => 'potato spinach'
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', joinIf([predicate, 'spinach'])) # => 'potato spinach'
 ```
 
 ## Instructions:
