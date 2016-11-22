@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/rkotze/joinable.svg?branch=master)](https://travis-ci.org/rkotze/joinable)
 
-Join strings with built in control flow. Because we always need to join strings logically. :D
+Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.  
 
 **What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
 
-**Why use it:** Keep your code base clean by removing the if else statements and improve the readability.
+**Why use Joinable:** Keep your code base clean by removing the repetitive `falsy` checks and improve the readability.
 
 **More information** about [Joinable](http://www.richardkotze.com/projects/joinable)
 
