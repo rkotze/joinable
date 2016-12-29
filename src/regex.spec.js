@@ -1,4 +1,4 @@
-import joinable from './index';
+import { joinExp } from './index';
 
 const regexTestCases = [
   {
@@ -21,11 +21,11 @@ const regexTestCases = [
 describe('regex checks', () => {
   regexTestCases.forEach(({stringsToJoin, regex, joinedString}) => {
     it(`joins the strings in [${stringsToJoin}] that match the regular expression ${regex}`, () => {
-      joinable(...stringsToJoin, {regex: regex}).should.equal(joinedString);
+      joinExp(regex, ...stringsToJoin).should.equal(joinedString);
     });
   });
 
   it('joins the strings in [mickey, minnie, donald] that match the regular expression /m*/ with a comma separator', () => {
-    joinable('mickey', 'minnie', 'donald', {regex:/m+/, separator:','}).should.equal('mickey,minnie');
+    joinExp(/m+/, 'mickey', 'minnie', 'donald', {separator:','}).should.equal('mickey,minnie');
   });
 });

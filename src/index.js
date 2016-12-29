@@ -21,19 +21,30 @@ const prefixStrings = function(){
   return join(prefixList, lastArg);
 };
 
+const joinExp = function(){
+  let stringList = [];
+  let regexp = arguments[0];
+
+  for (let i = 1; i < arguments.length; i++) {
+    const item = arguments[i];
+    if(!item) continue;
+
+    if(isJoinable(item) && isMatch(regexp, item)) {
+      stringList.push(item);
+    }
+  }
+  
+  return join(stringList, arguments[arguments.length-1]);
+};
+
 const joinable = function(){
   let stringList = [];
-  let options = arguments[arguments.length-1];
-  const hasRegexOption = hasRegex(options);
 
   for (let i = 0; i < arguments.length; i++) {
     const item = arguments[i];
     if(!item) continue;
 
     if(isJoinable(item)) {
-      if(hasRegexOption && !options.regex.test(item)){
-        continue;
-      }
       stringList.push(item);
     } else {
       const value = joinIf(item);
@@ -79,8 +90,8 @@ const isSeparator = function(options) {
   return options && (options.separator === '' || options.separator);
 };
 
-const hasRegex = function(options) {
-  return options && options.regex instanceof RegExp;
+const isMatch = function(regexp, item) {
+  return regexp && regexp instanceof RegExp && regexp.test(item);
 };
 
 const isJoinable = function(item) {
@@ -93,5 +104,6 @@ export {
   joinStrings as default,
   joinStrings,
   joinIf,
-  prefixStrings
+  prefixStrings,
+  joinExp
 };
