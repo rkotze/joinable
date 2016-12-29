@@ -6,10 +6,11 @@ const joinStrings = function(){
 
 const prefixStrings = function(){
   const stringList = joinable.apply(null, arguments),
-  prefix = arguments[0];
+  prefix = arguments[0],
+  lastArg = arguments[arguments.length-1];
 
   if(!prefix)
-    return join(stringList, arguments[arguments.length-1]);
+    return join(stringList, lastArg);
 
   const prefixList = [];
   
@@ -17,7 +18,7 @@ const prefixStrings = function(){
     prefixList.push(prefix + stringList[i]);
   }
 
-  return join(prefixList, arguments[arguments.length-1]);
+  return join(prefixList, lastArg);
 };
 
 const joinable = function(){
@@ -46,7 +47,7 @@ const joinable = function(){
 };
 
 const join = function(list, options) {
-  if(hasSeparator(options)){
+  if(isSeparator(options)){
     return list.join(options.separator);
   }
 
@@ -74,12 +75,8 @@ if (!isArray) {
   };
 }
 
-const isObject = function(arg) {
-  return Object.prototype.toString.call(arg) === '[object Object]';
-};
-
-const hasSeparator = function(options) {
-  return isObject(options) && options.hasOwnProperty('separator');
+const isSeparator = function(options) {
+  return options && (options.separator === '' || options.separator);
 };
 
 const hasRegex = function(options) {

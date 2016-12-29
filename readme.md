@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/rkotze/joinable.svg?branch=master)](https://travis-ci.org/rkotze/joinable)
 
-Join strings with built in control flow. Because we always need to join strings logically. :D
+Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.  
 
 **What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
 
-**Why use it:** Keep your code base clean by removing the if else statements and improve the readability.
+**Why use Joinable:** Keep your code base clean by removing the repetitive `falsy` checks and improve the readability.
 
 **More information** about [Joinable](http://www.richardkotze.com/projects/joinable)
 
@@ -74,8 +74,8 @@ prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // =
 ### If array
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinStrings('potato', [condition, 'spinach']); // => 'potato spinach'
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', [predicate, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
@@ -83,8 +83,8 @@ joinStrings('potato', [null, 'spinach']); // => 'potato'
 ### If else array
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinStrings('potato', [condition, 'spinach', 'beetroot']); // => 'potato spinach'
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', [predicate, 'spinach', 'beetroot']); // => 'potato spinach'
 joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
 joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ```
@@ -92,15 +92,15 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ### joinIf
 
 ```
-@param   {array}  ifArray  three value array with first being the condition
+@param   {array}  ifArray  three value array with first being the predicate
 @return  {string|null}
 ```
 
 `joinIf(ifArray)`
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinIf([condition, 'spinach']); // => 'spinach'
+const predicate = variableA === variableB; // assigns true
+joinIf([predicate, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
 joinIf([1==2, 'spinach', 'broccoli']); // => 'broccoli'
@@ -110,8 +110,8 @@ joinIf('lettuce'); // => null
 Combine both `joinStrings` and `joinIf`.
 
 ```JavaScript
-const condition = variableA === variableB; // assigns true
-joinStrings('potato', joinIf([condition, 'spinach'])) # => 'potato spinach'
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', joinIf([predicate, 'spinach'])) # => 'potato spinach'
 ```
 
 ## Instructions:

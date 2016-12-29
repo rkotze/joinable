@@ -43,6 +43,10 @@ describe('Join strings', () => {
     joinStrings('spinach', 'cucumber', 'carrot', {separator:','}).should.equal('spinach,cucumber,carrot');
   });
 
+  it('join with an empty string separator', () => {
+    joinStrings('spinach', 'cucumber', 'carrot', {separator:''}).should.equal('spinachcucumbercarrot');
+  });
+
   it('default join with space if no separator property in options', () => {
     joinStrings('spinach', 'cucumber', 'carrot', {opt:','}).should.equal('spinach cucumber carrot');
   });
