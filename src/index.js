@@ -80,7 +80,7 @@ const isSeparator = function(options) {
 };
 
 const hasRegex = function(options) {
-  return isObject(options) && options.hasOwnProperty('regex');
+  return options && options.regex instanceof RegExp;
 };
 
 const isJoinable = function(item) {
