@@ -104,6 +104,7 @@ prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // =
 ```
 joinExp(/m+/, 'cucumber'); // => 'cucumber'
 joinExp(/(m|n)+/, 'cucumber', false, 'sandwich'); // => 'cucumber sandwich'
+joinExp(/r+/, 'cucumber'); // => ''
 joinExp('', 'cucumber'); // => throw Error 'First parameter should be of RegExp type'
 ```
 

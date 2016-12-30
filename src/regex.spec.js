@@ -26,6 +26,10 @@ describe('regex checks', () => {
     });
   });
 
+  it('joins the strings where regexp wont match should return empty string', () => {
+    joinExp(/r+/, 'mickey', 'minnie', 'donald').should.equal('');
+  });
+
   it('joins the strings in [mickey, minnie, donald] that match the regular expression /m*/ with a comma separator', () => {
     joinExp(/m+/, 'mickey', 'minnie', 'donald', {separator:','}).should.equal('mickey,minnie');
   });
@@ -39,8 +43,8 @@ describe('regex checks', () => {
 
     falsyList.forEach((falsy) => {
 
-      it(`look for m or n. Third param falsy(${falsy}) with second and forth valid params returns 'cucumber sandwitch'`, () => {
-        joinExp(/(m|n)+/, 'cucumber', falsy, 'sandwitch').should.equal('cucumber sandwitch');
+      it(`look for m or n. Third param falsy(${falsy}) with second and forth valid params returns 'cucumber sandwich'`, () => {
+        joinExp(/(m|n)+/, 'cucumber', falsy, 'sandwich').should.equal('cucumber sandwich');
       });
 
     });
