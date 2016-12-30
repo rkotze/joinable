@@ -2,7 +2,7 @@ import joinable, { joinStrings, joinIf } from './index';
 import { falsyList } from './falsy-list';
 
 describe('Join strings', () => {
-  
+
   it('first param has a string and that value is returned', () => {
     joinStrings('carrot').should.equal('carrot');
   });
