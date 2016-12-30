@@ -1,5 +1,6 @@
 # Joinable
 
+[![Version](http://img.shields.io/npm/v/joinable.svg)](https://www.npmjs.org/package/joinable) 
 [![Build Status](https://travis-ci.org/rkotze/joinable.svg?branch=master)](https://travis-ci.org/rkotze/joinable)
 
 Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.  
