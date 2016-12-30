@@ -10,6 +10,8 @@ Join strings easily by removing the repetitive `falsy` checks. Construct strings
 
 **More information** about [Joinable](http://www.richardkotze.com/projects/joinable)
 
+Unit tests: `npm test`
+
 Performance tested using benchmark. `npm run benchmark`
 
 Follow [Semantic Versioning](http://semver.org/)
@@ -18,9 +20,13 @@ Follow [Semantic Versioning](http://semver.org/)
 
 `npm install joinable`
 
-`import joinable, { joinStrings, prefixStrings, joinIf } from 'joinable'`
+`import joinable, { joinStrings, prefixStrings, joinIf, joinExp } from 'joinable'`
 
 ## API
+
+### joinable
+
+`joinable` is the default export and an alias of `joinStrings`.
 
 ### joinStrings
 
@@ -28,13 +34,44 @@ Follow [Semantic Versioning](http://semver.org/)
 @param  {string|number}  joinables  As many `strings`, `numbers` and `ifArray()`
 @param  {Object}         options    { separator: ' ' }. default is space
 @return {string}
+
+joinStrings(...joinables [, options])
 ```
 
-`joinStrings(...joinables [, options])`
+### prefixStrings
 
-`joinable` is the default export and an alias of `joinStrings`.
+```
+@param  {string}         prefix     value to prefix onto joinables
+@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
+@param  {Object}         options    { separator: ' ' }. default is space
+@return {string}
 
-### Examples
+prefixStrings(prefix, ...joinables [, options])
+```
+
+### joinExp
+
+**Note:** no ifArrays can be used in joinables
+
+```
+@param  {RegExp}         regexp     must be a regular expression
+@param  {string|number}  joinables  as many `strings` and `numbers`
+@param  {Object}         options    { separator: ' ' }. default is space
+@return {string}
+
+joinExp(regexp, ...joinables [, options])
+```
+
+### joinIf
+
+```
+@param   {array}  ifArray  three value array with first being the predicate
+@return  {string|null}
+
+joinIf(ifArray)
+```
+
+## Examples
 
 Handle falsy `false, 0, "", undefined, null, NaN`
 
@@ -56,19 +93,18 @@ joinStrings('potato', 'rice', 'carrot', {regex: /^.*t+.*$/}); // => 'potato carr
 
 ### prefixStrings
 
-```
-@param  {string}         prefix     value to prefix onto joinables
-@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
-@param  {Object}         options    { separator: ' ' }. default is space
-@return {string}
-```
-
-`prefixStrings(prefix, ...joinables [, options])`
-
 ```JavaScript
 prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
 prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
 prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // => 'pre-rice,pre-carrot'
+```
+
+### joinExp
+
+```
+joinExp(/m+/, 'cucumber'); // => 'cucumber'
+joinExp(/(m|n)+/, 'cucumber', false, 'sandwich'); // => 'cucumber sandwich'
+joinExp('', 'cucumber'); // => throw Error 'First parameter should be of RegExp type'
 ```
 
 ### If array
@@ -90,13 +126,6 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ```
 
 ### joinIf
-
-```
-@param   {array}  ifArray  three value array with first being the predicate
-@return  {string|null}
-```
-
-`joinIf(ifArray)`
 
 ```JavaScript
 const predicate = variableA === variableB; // assigns true
