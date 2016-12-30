@@ -24,6 +24,8 @@ const prefixStrings = function(){
 const joinExp = function(){
   let stringList = [];
   let regexp = arguments[0];
+  if(!(regexp instanceof RegExp))
+    throw new Error('First parameter should be of RegExp type');
 
   for (let i = 1; i < arguments.length; i++) {
     const item = arguments[i];
@@ -91,7 +93,7 @@ const isSeparator = function(options) {
 };
 
 const isMatch = function(regexp, item) {
-  return regexp && regexp instanceof RegExp && regexp.test(item);
+  return regexp.test(item);
 };
 
 const isJoinable = function(item) {

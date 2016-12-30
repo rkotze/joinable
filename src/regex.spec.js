@@ -28,4 +28,9 @@ describe('regex checks', () => {
   it('joins the strings in [mickey, minnie, donald] that match the regular expression /m*/ with a comma separator', () => {
     joinExp(/m+/, 'mickey', 'minnie', 'donald', {separator:','}).should.equal('mickey,minnie');
   });
+
+  it('no regexp in first param will error', () => {
+    (() => joinExp('noRegex', 'string'))
+    .should.throwError('First parameter should be of RegExp type');
+  });
 });
