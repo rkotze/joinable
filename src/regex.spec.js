@@ -1,4 +1,5 @@
 import { joinExp } from './index';
+import { falsyList } from './falsy-list';
 
 const regexTestCases = [
   {
@@ -32,5 +33,16 @@ describe('regex checks', () => {
   it('no regexp in first param will error', () => {
     (() => joinExp('noRegex', 'string'))
     .should.throwError('First parameter should be of RegExp type');
+  });
+
+  describe('falsy checks', () => {
+
+    falsyList.forEach((falsy) => {
+
+      it(`look for m or n. Third param falsy(${falsy}) with second and forth valid params returns 'cucumber sandwitch'`, () => {
+        joinExp(/(m|n)+/, 'cucumber', falsy, 'sandwitch').should.equal('cucumber sandwitch');
+      });
+
+    });
   });
 });
