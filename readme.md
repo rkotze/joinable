@@ -86,12 +86,6 @@ Change **separator** an object with `separator` property can be passed in as **l
 joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
 ```
 
-To join based on a regular expression an object with `regex` property can be passed in as **last** parameter.
-
-```JavaScript
-joinStrings('potato', 'rice', 'carrot', {regex: /^.*t+.*$/}); // => 'potato carrot'
-```
-
 ### prefixStrings
 
 ```JavaScript
