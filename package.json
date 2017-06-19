@@ -6,9 +6,9 @@
     "test": "npm run js-style && mocha -r should --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "test:w": "npm run js-style && mocha -r should -w --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "js-style": "eslint ./src/",
-    "benchmark": "npm run compile && node ./benchmark/index.js",
-    "bundle": "browserify src/index.js -o lib/index.js -t [ babelify --presets [ es2015 ] ]",
-    "compile": "babel -d lib/ src/ --ignore *spec.js,falsy-list.js,regex-test-cases.js",
+    "benchmark": "npm run old-compile && node ./benchmark/index.js",
+    "compile": "browserify src/index.js src/join-object.js -o lib/index.js -t [ babelify --presets [ es2015 ] ]",
+    "old-compile": "babel -d lib/ src/ --ignore *spec.js,falsy-list.js,regex-test-cases.js",
     "prepublish": "npm run test && npm run compile"
   },
   "repository": {
