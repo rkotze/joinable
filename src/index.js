@@ -1,3 +1,5 @@
+import isJoinable from './is-joinable';
+
 const joinStrings = function(){
   let stringList = joinable.apply(null, arguments);
 
@@ -94,10 +96,6 @@ const isSeparator = function(options) {
 
 const isMatch = function(regexp, item) {
   return regexp.test(item);
-};
-
-const isJoinable = function(item) {
-  return typeof item === 'string' || typeof item === 'number';
 };
 
 const DEFAULT_SEPARATOR = ' ';
