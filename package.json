@@ -6,9 +6,8 @@
     "test": "npm run js-style && mocha -r should --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "test:w": "npm run js-style && mocha -r should -w --compilers js:babel-core/register src/*spec.js src/**/*spec.js",
     "js-style": "eslint ./src/",
-    "benchmark": "npm run old-compile && node ./benchmark/index.js",
-    "compile": "browserify src/index.js src/join-object.js -o lib/index.js -t [ babelify --presets [ es2015 ] ]",
-    "old-compile": "babel -d lib/ src/ --ignore *spec.js,falsy-list.js,regex-test-cases.js",
+    "benchmark": "npm run compile && node ./benchmark/index.js",
+    "compile": "node ./compile.js",
     "prepublish": "npm run test && npm run compile"
   },
   "repository": {
@@ -34,14 +33,13 @@
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.7.2",
-    "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
     "babel-preset-es2015": "^6.24.1",
-    "babelify": "^7.3.0",
     "benchmark": "^2.1.1",
-    "browserify": "^14.4.0",
+    "del": "^3.0.0",
     "eslint": "^3.4.0",
     "eslint-config-google": "^0.7.1",
     "mocha": "^3.0.2",
+    "rollup": "^0.43.0",
     "should": "^11.1.0"
   },
   "bugs": {
