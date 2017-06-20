@@ -53,7 +53,7 @@ Change **separator** an object with `separator` property can be passed in as **l
 joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
 ```
 
-**If example**
+**If examples:**
 
 ```JavaScript
 const predicate = variableA === variableB; // assigns true
@@ -62,7 +62,7 @@ joinStrings('potato', [1==2, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
 
-**If else example**
+**If else examples:**
 
 ```JavaScript
 const predicate = variableA === variableB; // assigns true
@@ -105,7 +105,7 @@ joinExp(regexp, ...joinables [, options])
 
 **Examples:**
 
-```
+```JavaScript
 joinExp(/m+/, 'cucumber'); // => 'cucumber'
 joinExp(/(m|n)+/, 'cucumber', false, 'sandwich'); // => 'cucumber sandwich'
 joinExp(/r+/, 'cucumber'); // => ''
@@ -142,9 +142,9 @@ joinStrings('potato', joinIf([predicate, 'spinach'])) # => 'potato spinach'
 ### joinObject
 
 ```
-@param  {Object}         joinable   Object literal prop and values to be joined
-@param  {string}         separator  separator for the prop and value pairs
-@param  {string}         separator  separator between prop and values
+@param  {Object}    joinable                Object literal prop and values to be joined
+@param  {string}    separator  default='&'  separator for the prop and value pairs
+@param  {string}    separator  default='='  separator between prop and values
 @return {string}
 
 joinObject({object} [, separator, separator])
@@ -153,7 +153,7 @@ joinObject({object} [, separator, separator])
 **Examples:**
 
 ```JavaScript
-joinObject({ chicken: 'burger', spare: 'ribs' }) // => ('chicken=burger&spare=ribs'
+joinObject({ chicken: 'burger', spare: 'ribs' }) // => 'chicken=burger&spare=ribs'
 joinObject({ chicken: 'burger', spare: 'ribs' }, ',') // => 'chicken=burger,spare=ribs'
 joinObject({ chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
 joinObject({ salad: null, chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
