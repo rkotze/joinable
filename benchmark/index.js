@@ -28,6 +28,9 @@ suite.add('joinStrings', function() {
 .add('prefixStrings with if cond', function() {
   joinable.prefixStrings('pre-','a', null, 'b', undefined);
 })
+.add('joinObject with just defaults', function() {
+  joinable.joinObject({ chicken: 'burger', spare: 'ribs' });
+})
 // add listeners
 .on('cycle', function(event) {
   console.log(String(event.target));
