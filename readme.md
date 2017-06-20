@@ -3,7 +3,9 @@
 [![Version](http://img.shields.io/npm/v/joinable.svg)](https://www.npmjs.org/package/joinable) 
 [![Build Status](https://travis-ci.org/rkotze/joinable.svg?branch=master)](https://travis-ci.org/rkotze/joinable)
 
-Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.  
+Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.
+
+Handle falsy `false, 0, "", undefined, null, NaN`
 
 **What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
 
@@ -39,6 +41,36 @@ Follow [Semantic Versioning](http://semver.org/)
 joinStrings(...joinables [, options])
 ```
 
+**Examples:**
+
+```JavaScript
+joinStrings('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
+```
+
+Change **separator** an object with `separator` property can be passed in as **last** parameter.
+
+```JavaScript
+joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
+```
+
+**If example**
+
+```JavaScript
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', [predicate, 'spinach']); // => 'potato spinach'
+joinStrings('potato', [1==2, 'spinach']); // => 'potato'
+joinStrings('potato', [null, 'spinach']); // => 'potato'
+```
+
+**If else example**
+
+```JavaScript
+const predicate = variableA === variableB; // assigns true
+joinStrings('potato', [predicate, 'spinach', 'beetroot']); // => 'potato spinach'
+joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
+joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
+```
+
 ### prefixStrings
 
 ```
@@ -48,6 +80,14 @@ joinStrings(...joinables [, options])
 @return {string}
 
 prefixStrings(prefix, ...joinables [, options])
+```
+
+**Examples:**
+
+```JavaScript
+prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
+prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
+prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // => 'pre-rice,pre-carrot'
 ```
 
 ### joinExp
@@ -63,6 +103,15 @@ prefixStrings(prefix, ...joinables [, options])
 joinExp(regexp, ...joinables [, options])
 ```
 
+**Examples:**
+
+```
+joinExp(/m+/, 'cucumber'); // => 'cucumber'
+joinExp(/(m|n)+/, 'cucumber', false, 'sandwich'); // => 'cucumber sandwich'
+joinExp(/r+/, 'cucumber'); // => ''
+joinExp('', 'cucumber'); // => throw Error 'First parameter should be of RegExp type'
+```
+
 ### joinIf
 
 ```
@@ -72,66 +121,7 @@ joinExp(regexp, ...joinables [, options])
 joinIf(ifArray)
 ```
 
-### joinObject
-```
-@param  {Object}         joinable   Object literal prop and values to be joined
-@param  {string}         separator  separator for the prop and value pairs
-@param  {string}         separator  separator between prop and values
-@return {string}
-
-joinObject({object} [, separator, separator])
-```
-
-## Examples
-
-Handle falsy `false, 0, "", undefined, null, NaN`
-
-```JavaScript
-joinStrings('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
-```
-
-Change **separator** an object with `separator` property can be passed in as **last** parameter.
-
-```JavaScript
-joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
-```
-
-### prefixStrings
-
-```JavaScript
-prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
-prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
-prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // => 'pre-rice,pre-carrot'
-```
-
-### joinExp
-
-```
-joinExp(/m+/, 'cucumber'); // => 'cucumber'
-joinExp(/(m|n)+/, 'cucumber', false, 'sandwich'); // => 'cucumber sandwich'
-joinExp(/r+/, 'cucumber'); // => ''
-joinExp('', 'cucumber'); // => throw Error 'First parameter should be of RegExp type'
-```
-
-### If array
-
-```JavaScript
-const predicate = variableA === variableB; // assigns true
-joinStrings('potato', [predicate, 'spinach']); // => 'potato spinach'
-joinStrings('potato', [1==2, 'spinach']); // => 'potato'
-joinStrings('potato', [null, 'spinach']); // => 'potato'
-```
-
-### If else array
-
-```JavaScript
-const predicate = variableA === variableB; // assigns true
-joinStrings('potato', [predicate, 'spinach', 'beetroot']); // => 'potato spinach'
-joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
-joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
-```
-
-### joinIf
+**Examples:**
 
 ```JavaScript
 const predicate = variableA === variableB; // assigns true
@@ -151,6 +141,17 @@ joinStrings('potato', joinIf([predicate, 'spinach'])) # => 'potato spinach'
 
 ### joinObject
 
+```
+@param  {Object}         joinable   Object literal prop and values to be joined
+@param  {string}         separator  separator for the prop and value pairs
+@param  {string}         separator  separator between prop and values
+@return {string}
+
+joinObject({object} [, separator, separator])
+```
+
+**Examples:**
+
 ```JavaScript
 joinObject({ chicken: 'burger', spare: 'ribs' }) // => ('chicken=burger&spare=ribs'
 joinObject({ chicken: 'burger', spare: 'ribs' }, ',') // => 'chicken=burger,spare=ribs'
@@ -158,7 +159,7 @@ joinObject({ chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger
 joinObject({ salad: null, chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
 ```
 
-## Instructions:s
+## Instructions:
 
 Install: `npm i`
 
