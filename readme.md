@@ -72,6 +72,16 @@ joinExp(regexp, ...joinables [, options])
 joinIf(ifArray)
 ```
 
+### joinObject
+```
+@param  {Object}         joinable   Object literal prop and values to be joined
+@param  {string}         separator  separator for the prop and value pairs
+@param  {string}         separator  separator between prop and values
+@return {string}
+
+joinObject({object} [, separator, separator])
+```
+
 ## Examples
 
 Handle falsy `false, 0, "", undefined, null, NaN`
@@ -139,7 +149,16 @@ const predicate = variableA === variableB; // assigns true
 joinStrings('potato', joinIf([predicate, 'spinach'])) # => 'potato spinach'
 ```
 
-## Instructions:
+### joinObject
+
+```JavaScript
+joinObject({ chicken: 'burger', spare: 'ribs' }) // => ('chicken=burger&spare=ribs'
+joinObject({ chicken: 'burger', spare: 'ribs' }, ',') // => 'chicken=burger,spare=ribs'
+joinObject({ chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
+joinObject({ salad: null, chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
+```
+
+## Instructions:s
 
 Install: `npm i`
 
