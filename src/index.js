@@ -108,5 +108,6 @@ export {
   joinIf,
   prefixStrings,
   joinExp,
-  joinObject
+  joinObject,
+  compose
 };
