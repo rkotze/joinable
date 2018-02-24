@@ -1,23 +1,11 @@
 # Joinable
 
-[![Version](http://img.shields.io/npm/v/joinable.svg)](https://www.npmjs.org/package/joinable) 
+[![Version](http://img.shields.io/npm/v/joinable.svg)](https://www.npmjs.org/package/joinable)
 [![Build Status](https://travis-ci.org/rkotze/joinable.svg?branch=master)](https://travis-ci.org/rkotze/joinable)
 
 Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.
 
 Handle falsy `false, 0, "", undefined, null, NaN`
-
-**What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
-
-**Why use Joinable:** Keep your code base clean by removing the repetitive `falsy` checks and improve the readability.
-
-**More information** about [Joinable](http://www.richardkotze.com/projects/joinable)
-
-Unit tests: `npm test`
-
-Performance tested using benchmark. `npm run benchmark`
-
-Follow [Semantic Versioning](http://semver.org/)
 
 ## Usage
 
@@ -25,49 +13,50 @@ Follow [Semantic Versioning](http://semver.org/)
 
 `import joinable, { joinStrings, prefixStrings, joinIf, joinExp } from 'joinable'`
 
+## About
+
+**What is Joinable:** A library to join strings together without the need to check if a value is a falsy like `undefined`.
+
+**Why use Joinable:** Keep your code base clean by removing the repetitive `falsy` checks and improve the readability.
+
+**More information** about [**Joinable**](http://www.richardkotze.com/projects/joinable)
+
 ## API
 
 ### joinable
 
 `joinable` is the default export and an alias of `joinStrings`.
 
-### joinStrings
-
 ```
-@param  {string|number}  joinables  As many `strings`, `numbers` and `ifArray()`
-@param  {Object}         options    { separator: ' ' }. default is space
-@return {string}
-
-joinStrings(...joinables [, options])
+joinable(...joinables [, options]) : string
 ```
-
-**Examples:**
 
 ```JavaScript
-joinStrings('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
+import joinable from 'joinable';
+joinable('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
+// Change separator
+joinable('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
 ```
 
-Change **separator** an object with `separator` property can be passed in as **last** parameter.
+**IF**
+
+Join strings based on another value like a boolean.
 
 ```JavaScript
-joinStrings('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
-```
-
-**If examples:**
-
-```JavaScript
-const predicate = variableA === variableB; // assigns true
-joinStrings('potato', [predicate, 'spinach']); // => 'potato spinach'
-joinStrings('potato', [1==2, 'spinach']); // => 'potato'
+import joinable from 'joinable';
+joinStrings('potato', [true, 'spinach']); // => 'potato spinach'
+joinStrings('potato', [false, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
 
-**If else examples:**
+**IF ELSE:**
+
+Have a default value if a falsy passed.
 
 ```JavaScript
-const predicate = variableA === variableB; // assigns true
-joinStrings('potato', [predicate, 'spinach', 'beetroot']); // => 'potato spinach'
-joinStrings('potato', [1==2, 'spinach', 'beetroot']); // => 'potato beetroot'
+import joinable from 'joinable';
+joinStrings('potato', [true, 'spinach', 'beetroot']); // => 'potato spinach'
+joinStrings('potato', [false, 'spinach', 'beetroot']); // => 'potato beetroot'
 joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ```
 
@@ -159,10 +148,12 @@ joinObject({ chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger
 joinObject({ salad: null, chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
 ```
 
-## Instructions:
+## Contribute:
 
 Install: `npm i`
 
 `npm test` - unit tests and eslint
 
 `npm run benchmark` - run performance tests
+
+This project follows [Semantic Versioning](http://semver.org/)
