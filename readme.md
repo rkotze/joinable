@@ -5,8 +5,6 @@
 
 Join strings easily by removing the repetitive `falsy` checks. Construct strings like form validation, CSS classes, URLs and more.
 
-Handle falsy `false, 0, "", undefined, null, NaN`
-
 ## Usage
 
 `npm install joinable`
@@ -23,6 +21,8 @@ joinable("potato", undefined, "rice"); // => 'potato rice'
 **Why use Joinable:** Keep your code base clean by removing the repetitive `falsy` checks and improve the readability.
 
 **More information** about [**Joinable**](http://www.richardkotze.com/projects/joinable)
+
+Handle falsy `false, 0, "", undefined, null, NaN`
 
 ## API
 
@@ -44,18 +44,60 @@ Join strings based on another value like a boolean.
 
 ```JavaScript
 import joinable from 'joinable';
-joinStrings('potato', [true, 'spinach']); // => 'potato spinach'
-joinStrings('potato', [false, 'spinach']); // => 'potato'
-joinStrings('potato', [null, 'spinach']); // => 'potato'
+joinable('potato', [true, 'spinach']); // => 'potato spinach'
+joinable('potato', [false, 'spinach']); // => 'potato'
+joinable('potato', [null, 'spinach']); // => 'potato'
 ```
 
 Have a default value if a falsy passed.
 
 ```JavaScript
 import joinable from 'joinable';
-joinStrings('potato', [true, 'spinach', 'beetroot']); // => 'potato spinach'
-joinStrings('potato', [false, 'spinach', 'beetroot']); // => 'potato beetroot'
-joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
+joinable('potato', [true, 'spinach', 'beetroot']); // => 'potato spinach'
+joinable('potato', [false, 'spinach', 'beetroot']); // => 'potato beetroot'
+joinable('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
+```
+
+### Joining classNames in ReactJS
+
+### Problem
+
+Example of typical logic string concatenation in _ReactJS component_ with if statements. General issues: verbose, unnecessary repetitive complexity and mutation:
+
+```javascript
+import React from "react";
+
+const MyComponent = props => {
+  let myClass = "panel ";
+  if (props.hide) myClass += "invisible ";
+
+  if (props.hasBoarder) myClass += "sparkleBoarder ";
+
+  if (props.className) myClass += props.className;
+
+  return <div className={myClass}>{props.children}</div>;
+};
+```
+
+While this works fine you will probably need to repeat that similar flow for a lot of components and some will have additional complexity round it.
+
+### Solution
+
+Same component as above but lets keep it clean with `joinable`.
+
+```javascript
+import React from "react";
+import joinable from "joinable";
+
+const MyComponent = props => {
+  const myClass = joinable(
+    "potato",
+    props.className,
+    [props.hide, "invisible"],
+    [props.hasBoarder, "sparkleBoarder"]
+  );
+  return <div className={myClass}>{props.children}</div>;
+};
 ```
 
 ### prefixStrings
