@@ -1,6 +1,5 @@
 import isJoinable from './is-joinable';
 import joinObject from './join-object';
-import compose from './compose';
 
 const joinStrings = function(){
   let stringList = joinable.apply(null, arguments);
@@ -108,6 +107,5 @@ export {
   joinIf,
   prefixStrings,
   joinExp,
-  joinObject,
-  compose
+  joinObject
 };
