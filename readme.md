@@ -11,7 +11,10 @@ Handle falsy `false, 0, "", undefined, null, NaN`
 
 `npm install joinable`
 
-`import joinable, { joinStrings, prefixStrings, joinIf, joinExp } from 'joinable'`
+```javascript
+import joinable from "joinable";
+joinable("potato", undefined, "rice"); // => 'potato rice'
+```
 
 ## About
 
@@ -23,8 +26,6 @@ Handle falsy `false, 0, "", undefined, null, NaN`
 
 ## API
 
-### joinable
-
 `joinable` is the default export and an alias of `joinStrings`.
 
 ```
@@ -34,11 +35,10 @@ joinable(...joinables [, options]) : string
 ```JavaScript
 import joinable from 'joinable';
 joinable('potato', undefined, 'rice', null, 'carrot'); // => 'potato rice carrot'
+
 // Change separator
 joinable('potato', 'rice', 'carrot', {separator: ','}); // => 'potato,rice,carrot'
 ```
-
-**IF**
 
 Join strings based on another value like a boolean.
 
@@ -48,8 +48,6 @@ joinStrings('potato', [true, 'spinach']); // => 'potato spinach'
 joinStrings('potato', [false, 'spinach']); // => 'potato'
 joinStrings('potato', [null, 'spinach']); // => 'potato'
 ```
-
-**IF ELSE:**
 
 Have a default value if a falsy passed.
 
@@ -63,17 +61,11 @@ joinStrings('potato', [null, 'spinach', 'beetroot']); // => 'potato beetroot'
 ### prefixStrings
 
 ```
-@param  {string}         prefix     value to prefix onto joinables
-@param  {string|number}  joinables  as many `strings`, `numbers` and `ifArray()`
-@param  {Object}         options    { separator: ' ' }. default is space
-@return {string}
-
-prefixStrings(prefix, ...joinables [, options])
+prefixStrings(prefix, ...joinables [, options]) : string
 ```
 
-**Examples:**
-
 ```JavaScript
+import { prefixStrings } from 'joinable';
 prefixStrings('pre-', undefined, 'rice', null, 'carrot'); // => 'pre-rice pre-carrot'
 prefixStrings(falsy, undefined, 'rice', null, 'carrot'); // => 'rice carrot'
 prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // => 'pre-rice,pre-carrot'
@@ -84,17 +76,11 @@ prefixStrings('pre-', undefined, 'rice', null, 'carrot', {separator: ','}); // =
 **Note:** no ifArrays can be used in joinables
 
 ```
-@param  {RegExp}         regexp     must be a regular expression
-@param  {string|number}  joinables  as many `strings` and `numbers`
-@param  {Object}         options    { separator: ' ' }. default is space
-@return {string}
-
-joinExp(regexp, ...joinables [, options])
+joinExp(regexp, ...joinables [, options]) : string
 ```
 
-**Examples:**
-
 ```JavaScript
+import { joinExp } from 'joinable';
 joinExp(/m+/, 'cucumber'); // => 'cucumber'
 joinExp(/(m|n)+/, 'cucumber', false, 'sandwich'); // => 'cucumber sandwich'
 joinExp(/r+/, 'cucumber'); // => ''
@@ -104,44 +90,33 @@ joinExp('', 'cucumber'); // => throw Error 'First parameter should be of RegExp 
 ### joinIf
 
 ```
-@param   {array}  ifArray  three value array with first being the predicate
-@return  {string|null}
-
 joinIf(ifArray)
 ```
 
-**Examples:**
-
 ```JavaScript
-const predicate = variableA === variableB; // assigns true
-joinIf([predicate, 'spinach']); // => 'spinach'
+import { joinIf } from 'joinable';
+joinIf([true, 'spinach']); // => 'spinach'
 joinIf([1==2, 'spinach']); // => null
 joinIf([1==1, 'spinach', 'broccoli']); // => 'spinach'
 joinIf([1==2, 'spinach', 'broccoli']); // => 'broccoli'
 joinIf('lettuce'); // => null
 ```
 
-Combine both `joinStrings` and `joinIf`.
+Useful to make joining easier to read combine both `joinable` and `joinIf`.
 
 ```JavaScript
-const predicate = variableA === variableB; // assigns true
-joinStrings('potato', joinIf([predicate, 'spinach'])) # => 'potato spinach'
+import joinable, { joinIf } from 'joinable';
+joinable('potato', joinIf([true, 'spinach'])) # => 'potato spinach'
 ```
 
 ### joinObject
 
 ```
-@param  {Object}    joinable                Object literal prop and values to be joined
-@param  {string}    separator  default='&'  separator for the prop and value pairs
-@param  {string}    separator  default='='  separator between prop and values
-@return {string}
-
-joinObject({object} [, separator, separator])
+joinObject({object} [, separator, separator]) : string
 ```
 
-**Examples:**
-
 ```JavaScript
+import { joinObject } from 'joinable';
 joinObject({ chicken: 'burger', spare: 'ribs' }) // => 'chicken=burger&spare=ribs'
 joinObject({ chicken: 'burger', spare: 'ribs' }, ',') // => 'chicken=burger,spare=ribs'
 joinObject({ chicken: 'burger', spare: 'ribs' }, ';', ',') // => 'chicken,burger;spare,ribs'
